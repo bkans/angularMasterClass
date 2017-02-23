@@ -1,2 +1,2 @@
 # angularMasterClass
-oefeningen
+oefeningen voor angular2 master class
