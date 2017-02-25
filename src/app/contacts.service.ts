@@ -52,7 +52,6 @@ export class ContactsService {
   }
 
   isEmailAvailable(email: string) {
-    //{API-ENDPOINT}/check-email?email={EMAIL}
     let map = this.http.get(this.API_ENDPOINT + '/check-email?email=' + email)
       .map(res => res.json());
     console.log('isEmailAvailable : ' + map);
