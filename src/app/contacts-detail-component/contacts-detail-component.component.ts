@@ -13,7 +13,6 @@ import {EventBusService} from "../event-bus.service";
 export class ContactsDetailComponentComponent implements OnInit {
   @Input() contact: Contact;
   @Output() edit = new EventEmitter<Contact>();
-  @Output() back = new EventEmitter<Contact>();
 
   constructor() { }
 

@@ -7,7 +7,8 @@
     <md-icon color="accent">search</md-icon>
   </md-toolbar>
 
-  <a md-list-item [routerLink]="['/contact', contact.id]" *ngFor="let contact of contacts | async">
+  <a md-list-item [routerLink]="['/contact', contact.id]"
+     *ngFor="let contact of contacts | async">
     <img md-list-avatar [src]="contact.image" alt="Picture of INSERT_CONTACT_NAME">
     <h3 md-line>{{contact.name}}</h3>
   </a>
