@@ -37,6 +37,6 @@ export class ContactsCreatorComponent implements OnInit {
   }
 
   save(contact) {
-    this.contactsService.addContact(contact).subscribe(res => this.router.navigateByUrl('contact'));
+    this.contactsService.addContact(contact).subscribe(res => this.router.navigateByUrl('contact/0'));
   }
 }

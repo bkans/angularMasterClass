@@ -50,9 +50,19 @@ import { AboutComponent } from './about/about.component';
     ReactiveFormsModule
   ],
   bootstrap: [ContactsAppComponent],
-  providers: [ContactsService, EventBusService]
+  providers: [ContactsService,
+              EventBusService,
+             {provide: 'ConfirmNavigationGuard',
+              useValue: doConfirm}]
 })
 export class ContactsModule {
 
 }
+
+// Needs to be an exported function for AOT to work
+export function doConfirm(component) {
+  return !component.confirmationNeeded || window.confirm('Navigate away without saving?');
+}
+
+
 

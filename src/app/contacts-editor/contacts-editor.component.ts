@@ -12,9 +12,11 @@ import {EventBusService} from "../event-bus.service";
 export class ContactsEditorComponent implements OnInit, OnChanges {
 
   contact: Contact = <Contact>{ address: {}};
+  confirmationNeeded: boolean;
 
   constructor(private route: ActivatedRoute, private contactsService: ContactsService,
   private router: Router, private eventBusService: EventBusService) {
+    this.confirmationNeeded = true;
   }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class ContactsEditorComponent implements OnInit, OnChanges {
   }
 
   save (contact: Contact) {
+    this.confirmationNeeded = false;
     this.contactsService.updateContact(contact)
       .subscribe(() => this.goToDetails(contact));
   }
