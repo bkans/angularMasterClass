@@ -21,6 +21,8 @@ import { EmailValidatorDirective } from './email-validator.directive';
 import { EmailAvailabilityValidatorDirective } from './email-availability-validator.directive';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { AboutComponent } from './about/about.component';
+import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialog/confirm-deactivation-dialog.component';
+import {CanDeactivateContactsEditorGuard} from "./contacts-editor/CanDeactivateContactsEditorGuard";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,11 @@ import { AboutComponent } from './about/about.component';
     EmailValidatorDirective,
     EmailAvailabilityValidatorDirective,
     ContactsDashboardComponent,
-    AboutComponent],
+    AboutComponent,
+    ConfirmDeactivationDialogComponent],
+  //entryComponent is nodig omdat dit niet via een selector opgeroepen wordt
+  //anders wordt deze verwijderd bij tree-shaking :)
+    entryComponents: [ConfirmDeactivationDialogComponent],
   imports: [
     BrowserModule,
     MaterialModule.forRoot(),
@@ -53,7 +59,8 @@ import { AboutComponent } from './about/about.component';
   providers: [ContactsService,
               EventBusService,
              {provide: 'ConfirmNavigationGuard',
-              useValue: doConfirm}]
+              useValue: doConfirm},
+    CanDeactivateContactsEditorGuard]
 })
 export class ContactsModule {
 

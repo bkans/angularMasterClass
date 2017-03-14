@@ -6,6 +6,7 @@ import {ContactsDetailViewComponent} from "./contacts-detail-view/contacts-detai
 import {ContactsCreatorComponent} from "./contacts-creator/contacts-creator.component";
 import {ContactsDashboardComponent} from "./contacts-dashboard/contacts-dashboard.component";
 import {AboutComponent} from "./about/about.component";
+import {CanDeactivateContactsEditorGuard} from "./contacts-editor/CanDeactivateContactsEditorGuard";
 export const APP_ROUTES = [
   //{ path: '', component: ContactsListComponent },
   { path: 'contact', component: ContactsListComponent },
@@ -15,6 +16,7 @@ export const APP_ROUTES = [
   { path: '', component: ContactsDashboardComponent,
       children: [{ path: '', redirectTo: 'contact/0', pathMatch: 'full' },
         { path: 'contact/:id', component: ContactsDetailViewComponent },
-        { path: 'contact/:id/edit', component: ContactsEditorComponent, canDeactivate: ['ConfirmNavigationGuard'] }]},
+        { path: 'contact/:id/edit', component: ContactsEditorComponent,
+            canDeactivate: [CanDeactivateContactsEditorGuard] }]},
   { path: 'about', component: AboutComponent },
 ]
