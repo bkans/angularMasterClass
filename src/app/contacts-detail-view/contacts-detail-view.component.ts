@@ -14,14 +14,13 @@ export class ContactsDetailViewComponent implements OnInit {
   contact: Contact;
 
   constructor(private router: Router, private activateRoute: ActivatedRoute,
-              private contactsService: ContactsService, private eventBusService: EventBusService ) { }
+              private eventBusService: EventBusService ) { }
 
   ngOnInit() {
     //  let id = this.activateRoute.snapshot.params['id'];
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
-      this.contactsService
-        .getContact(id)
+      this.activateRoute.data.map(data => data['contact'])
         .subscribe(contact => {this.contact = contact;
           this.eventBusService.emit('appTitleChange', contact.name);});
     })

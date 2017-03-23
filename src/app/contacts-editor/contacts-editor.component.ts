@@ -11,7 +11,7 @@ import {EventBusService} from "../event-bus.service";
 })
 export class ContactsEditorComponent implements OnInit, OnChanges {
 
-  contact: Contact = <Contact>{ address: {}};
+  contact: Contact;
   confirmationNeeded: boolean;
 
   constructor(private route: ActivatedRoute, private contactsService: ContactsService,
@@ -21,10 +21,9 @@ export class ContactsEditorComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
-    this.contactsService
-      .getContact(id)
+    this.route.data.map(data => data['contact'])
       .subscribe(contact => {this.contact = contact;
-        this.eventBusService.emit('appTitleChange', contact.name);});
+      this.eventBusService.emit('appTitleChange', contact.name);});
     this.eventBusService.emit('appTitleChange', this.contact.name);
   }
 
